@@ -19,12 +19,13 @@ colnames = ["age","workclass","fnlwgt","education","education-num","marital-stat
 df = pd.read_csv('dataset/adult.csv', names=colnames, header=None)
 df_test = pd.read_csv('dataset/adult_test.csv', names=colnames, header=None)
 
-df.append(df_test, ignore_index=True)
+df = df.append(df_test, ignore_index=True)
 
 df['occupation'].replace(to_replace=' ?', value="Unknown", inplace=True)
 df['workclass'].replace(to_replace=' ?', value="Unknown", inplace=True)
 df['native-country'].replace(to_replace=' ?', value="Unknown", inplace=True)
-
+df['outcome'].replace(to_replace=[' <=50K.'], value=' <=50K', inplace=True)
+df['outcome'].replace(to_replace=[' >50K.'], value=' >50K', inplace=True)
 
 laben = pp.LabelEncoder()
 
